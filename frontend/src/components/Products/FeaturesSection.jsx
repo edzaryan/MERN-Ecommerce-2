@@ -6,7 +6,7 @@ import { CgCreditCard } from "react-icons/cg";
 function FeaturesSection() {
     return (
         <section className="py-16 px-4">
-            <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 text-center">
+            <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-0 text-center">
                 <div className="flex flex-col items-center">
                     <div className="p-4 rounded-full mb-2">
                         <HiOutlineShoppingBag className="text-4xl" />
