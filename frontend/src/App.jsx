@@ -2,7 +2,6 @@ import './App.css'
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import UserLayout from "./components/Layout/UserLayout.jsx";
 import HomePage from "./pages/HomePage.jsx";
-import { Toaster } from "sonner";
 import LoginPage from "./pages/LoginPage.jsx";
 import RegisterPage from "./pages/RegisterPage.jsx";
 import Profile from "./pages/ProfilePage.jsx";
@@ -18,10 +17,12 @@ import UserManagement from "./components/Admin/UserManagement.jsx";
 import ProductManagement from "./components/Admin/ProductManagement.jsx";
 import EditProductPage from "./components/Admin/EditProductPage.jsx";
 import OrderManagement from "./components/Admin/OrderManagement.jsx";
+import ProtectedRoute from "./components/Common/ProtectedRoute.jsx";
+import { Toaster } from "sonner";
 
 import { Provider } from "react-redux";
 import store from "./redux/store";
-import ProtectedRoute from "./components/Common/ProtectedRoute.jsx";
+
 
 function App() {
     return (
