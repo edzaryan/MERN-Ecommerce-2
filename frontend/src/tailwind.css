@@ -2,5 +2,11 @@
 
 
 @theme {
+    --tracking-tightest: 1px;
+}
 
+@layer utilities {
+    .text-shadow-custom {
+        text-shadow: 1px 1px 1.5px #000c;
+    }
 }
