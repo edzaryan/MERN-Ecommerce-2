@@ -1,24 +1,25 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import {loginUser} from "./authSlice.js";
+import { loginUser } from "./authSlice";
+
 
 // Async Thunk to Fetch Products by Collection and optional Filters
 export const fetchProductsByFilters = createAsyncThunk(
     "products/fetchByFilters",
     async ({
-        collection,
-        size,
-        color,
-        gender,
-        minPrice,
-        maxPrice,
-        sortBy,
-        material,
-        search,
-        category,
-        brand,
-        limit
-    }) => {
+               collection,
+               size,
+               color,
+               gender,
+               minPrice,
+               maxPrice,
+               sortBy,
+               material,
+               search,
+               category,
+               brand,
+               limit
+           }) => {
         const query = new URLSearchParams();
         if (collection) query.append("collection", collection);
         if (size) query.append("size", size);
@@ -45,15 +46,15 @@ export const fetchProductsByFilters = createAsyncThunk(
 export const fetchProductDetails = createAsyncThunk(
     "products/fetchProductDetails",
     async (id) => {
-         const response = await axios.get(
-             `${import.meta.env.VITE_BACKEND_URL}/api/products/${id}`
-         );
+        const response = await axios.get(
+            `${import.meta.env.VITE_BACKEND_URL}/api/products/${id}`
+        );
 
-         return response.data;
+        return response.data;
     }
 );
 
-// Async thunk to fetch similar products
+// Async thunk to update a product (Requires Authorization)
 export const updateProduct = createAsyncThunk(
     "products/updateProduct",
     async ({ id, productData }) => {
@@ -106,9 +107,12 @@ const productsSlice = createSlice({
         }
     },
     reducers: {
+        // Set the filters in the state
         setFilters: (state, action) => {
-            state.filters = { ...state.filter, ...action.payload }
+            state.filters = { ...state.filters, ...action.payload };  // Fixed the reference to state.filters
         },
+
+        // Clear the filters in the state
         clearFilters: (state) => {
             state.filters = {
                 category: "",
@@ -122,11 +126,12 @@ const productsSlice = createSlice({
                 search: "",
                 material: "",
                 collection: ""
-            }
+            };
         },
     },
     extraReducers: (builder) => {
         builder
+            // Fetch products by filters lifecycle
             .addCase(fetchProductsByFilters.pending, (state) => {
                 state.loading = true;
                 state.error = null;
@@ -139,6 +144,8 @@ const productsSlice = createSlice({
                 state.loading = false;
                 state.error = action.error.message;
             })
+
+            // Fetch product details lifecycle
             .addCase(fetchProductDetails.pending, (state) => {
                 state.loading = true;
                 state.error = null;
@@ -151,24 +158,29 @@ const productsSlice = createSlice({
                 state.loading = false;
                 state.error = action.error.message;
             })
+
+            // Update product lifecycle
             .addCase(updateProduct.pending, (state) => {
                 state.loading = true;
                 state.error = null;
             })
             .addCase(updateProduct.fulfilled, (state, action) => {
                 state.loading = false;
-                state.updatedProduct = action.payload;
+                const updatedProduct = action.payload;
+                // Find the index of the updated product and replace it
                 const index = state.products.findIndex(
-                    product => product._id === updateProduct._id
+                    (product) => product._id === updatedProduct._id
                 );
                 if (index !== -1) {
-                    state.products[index] = updateProduct;
+                    state.products[index] = updatedProduct;
                 }
             })
             .addCase(updateProduct.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
             })
+
+            // Fetch similar products lifecycle
             .addCase(fetchSimilarProducts.pending, (state) => {
                 state.loading = true;
                 state.error = null;
@@ -184,5 +196,5 @@ const productsSlice = createSlice({
     }
 });
 
-export const { setFilters, cleanFilters } = productsSlice.actions;
+export const { setFilters, clearFilters } = productsSlice.actions;
 export default productsSlice.reducer;

@@ -1,9 +1,9 @@
-import {useEffect, useState} from "react";
-import {Link, useLocation, useNavigate} from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { loginUser } from "../redux/slices/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { mergeCart } from "../redux/slices/cartSlice";
 import login from "../assets/login.webp";
-import { loginUser } from "../redux/slices/authSlice.js";
-import {useDispatch, useSelector} from "react-redux";
-import {mergeCart} from "../redux/slices/cartSlice.js";
 
 
 function LoginPage() {
@@ -45,9 +45,7 @@ function LoginPage() {
                         <h2 className="text-xl font-medium">Rabbit</h2>
                     </div>
                     <h2 className="text-2xl font-bold text-center mb-6">Hey there! 🖐</h2>
-                    <p className="text-center mb-6">
-                        Enter your username and password to LoginPage.
-                    </p>
+                    <div className="text-center mb-6">Enter your username and password to LoginPage.</div>
                     <div className="mb-4">
                         <label className="block text-sm font-semibold mb-2">Email</label>
                         <input
@@ -73,14 +71,14 @@ function LoginPage() {
                         className="w-full bg-black text-white p-2 rounded-lg font-smibold hover:bg-gray-800 transition">
                         {loading ? "Loading..." : "Sign In"}
                     </button>
-                    <p className="mt-6 text-center text-sm">
+                    <div className="mt-6 text-center text-sm">
                         Don't have an account?{" "}
                         <Link
                             to={`/register?redirect=${encodeURIComponent(redirect)}`}
                             className="text-blue-500">
                             Register
                         </Link>
-                    </p>
+                    </div>
                 </form>
             </div>
             <div className="hidden md:block w-1/2 bg-gray-800">

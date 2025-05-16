@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from "react";
+import { useParams, useSearchParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import { FaFilter } from "react-icons/fa";
-import FilterSidebar from "../components/Products/FilterSidebar.jsx";
-import SortOptions from "../components/Products/SortOptions.jsx";
-import ProductGrid from "../components/Products/ProductGrid.jsx";
-import {useParams, useSearchParams} from "react-router-dom";
-import {useSelector, useDispatch} from "react-redux";
-import { fetchProductsByFilters } from "../redux/slices/productsSlice.js";
+import FilterSidebar from "../components/Products/FilterSidebar";
+import SortOptions from "../components/Products/SortOptions";
+import ProductGrid from "../components/Products/ProductGrid";
+import { fetchProductsByFilters } from "../redux/slices/productsSlice";
 
 
 function CollectionPage() {
@@ -19,7 +19,7 @@ function CollectionPage() {
 
     useEffect(() => {
         dispatch(fetchProductsByFilters({ collection, ...queryParams }));
-    }, [dispatch, collection, searchParams])
+    }, [dispatch, collection, searchParams]);
 
     const handleClickOutside = (e) => {
         if (sidebarRef.current && !sidebarRef.current.contains(e.target)) {

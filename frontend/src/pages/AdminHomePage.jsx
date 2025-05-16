@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAdminProducts } from "../redux/slices/adminProductSlice.js";
-import { fetchAllOrders } from "../redux/slices/adminOrderSlice.js";
+import { fetchAdminProducts } from "../redux/slices/adminProductSlice";
+import { fetchAllOrders } from "../redux/slices/adminOrderSlice";
 
 
 function AdminHomePage() {
@@ -19,8 +19,6 @@ function AdminHomePage() {
         loading: ordersLoading,
         error: ordersError
     } = useSelector((state) => state.adminOrders);
-
-    console.log(orders);
 
     useEffect(() => {
         dispatch(fetchAdminProducts());
@@ -80,7 +78,7 @@ function AdminHomePage() {
                                         <td className="p-4">{order.status}</td>
                                     </tr>
                                 ))) : (
-                                <tr>
+                                    <tr>
                                         <td colSpan={4} className="p-4 text-center text-gray-500">No recent orders found.</td>
                                     </tr>
                                 )

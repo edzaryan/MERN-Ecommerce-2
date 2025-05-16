@@ -1,3 +1,4 @@
+// Redux slice and async thunks for managing user authentication and guest ID handling
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -6,20 +7,20 @@ const userFromStorage = localStorage.getItem("userInfo")
     ? JSON.parse(localStorage.getItem("userInfo"))
     : null;
 
-// Check for an axisting guest ID in the localStorage o generate a new One
+// Check for an existing guest ID in localStorage or generate a new one
 const initialGuestId =
     localStorage.getItem("guestId") || `guest_${new Date().getTime()}`;
 localStorage.setItem("guestId", initialGuestId);
 
-// Initial state
+// Initial state for the auth slice
 const initialState = {
     user: userFromStorage,
     guestId: initialGuestId,
     loading: false,
     error: null,
-}
+};
 
-// Async Thunk for User Login
+// Async thunk to log in a user
 export const loginUser = createAsyncThunk(
     "auth/loginUser",
     async (userData, { rejectWithValue }) => {
@@ -29,6 +30,7 @@ export const loginUser = createAsyncThunk(
                 userData
             );
 
+            // Persist user data and token in localStorage
             localStorage.setItem("userInfo", JSON.stringify(response.data.user));
             localStorage.setItem("userToken", response.data.token);
 
@@ -39,7 +41,7 @@ export const loginUser = createAsyncThunk(
     }
 );
 
-// Async Thunk for User Registration
+// Async thunk to register a new user
 export const registerUser = createAsyncThunk(
     "auth/registerUser",
     async (userData, { rejectWithValue }) => {
@@ -48,6 +50,8 @@ export const registerUser = createAsyncThunk(
                 `${import.meta.env.VITE_BACKEND_URL}/api/users/register`,
                 userData
             );
+
+            // Persist user data and token in localStorage
             localStorage.setItem("userInfo", JSON.stringify(response.data.user));
             localStorage.setItem("userToken", response.data.token);
 
@@ -58,11 +62,12 @@ export const registerUser = createAsyncThunk(
     }
 );
 
-// Slice
+// Slice to manage authentication state (login, registration, logout, guest ID)
 const authSlice = createSlice({
     name: "auth",
     initialState,
     reducers: {
+        // Logs out the user and resets to guest state
         logout: (state) => {
             state.user = null;
             state.guestId = `guest_${new Date().getTime()}`;
@@ -70,6 +75,7 @@ const authSlice = createSlice({
             localStorage.removeItem("userToken");
             localStorage.setItem("guestId", state.guestId);
         },
+        // Generates a new guest ID manually (if needed)
         generateNewGuestId: (state) => {
             state.guestId = `guest_${new Date().getTime()}`;
             localStorage.setItem("guestId", state.guestId);
@@ -77,6 +83,7 @@ const authSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
+            // Login handlers
             .addCase(loginUser.pending, (state) => {
                 state.loading = true;
                 state.error = null;
@@ -89,6 +96,7 @@ const authSlice = createSlice({
                 state.loading = false;
                 state.error = action.payload.message;
             })
+            // Registration handlers
             .addCase(registerUser.pending, (state) => {
                 state.loading = true;
                 state.error = null;
@@ -106,5 +114,3 @@ const authSlice = createSlice({
 
 export const { logout, generateNewGuestId } = authSlice.actions;
 export default authSlice.reducer;
-
-

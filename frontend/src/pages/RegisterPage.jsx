@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import register from "../assets/register.webp";
-import { registerUser } from "../redux/slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { mergeCart } from "../redux/slices/cartSlice.js";
+import { registerUser } from "../redux/slices/authSlice";
+import { mergeCart } from "../redux/slices/cartSlice";
+import register from "../assets/register.webp";
 
 
 function RegisterPage() {
@@ -46,7 +46,7 @@ function RegisterPage() {
                         <h2 className="text-xl font-medium">Rabbit</h2>
                     </div>
                     <h2 className="text-2xl font-bold text-center mb-6">Hey there! 🖐</h2>
-                    <p className="text-center mb-6">Enter your username and password to LoginPage.</p>
+                    <div className="text-center mb-6">Enter your username and password to LoginPage.</div>
                     <div className="mb-4">
                         <label className="block text-sm font-semibold mb-2">Name</label>
                         <input
@@ -82,14 +82,14 @@ function RegisterPage() {
                         className="w-full bg-black text-white p-2 rounded-lg font-smibold hover:bg-gray-800 transition">
                         {loading ? "Loading..." : "Create Account"}
                     </button>
-                    <p className="mt-6 text-center text-sm">
+                    <div className="mt-6 text-center text-sm">
                         Already have an account?{" "}
                         <Link
                             to={`/login?redirect=${encodeURIComponent(redirect)}`}
                             className="text-blue-500">
                             Login
                         </Link>
-                    </p>
+                    </div>
                 </form>
             </div>
             <div className="hidden md:block w-1/2 bg-gray-800">

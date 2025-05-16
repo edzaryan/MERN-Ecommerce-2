@@ -1,7 +1,8 @@
+// Redux slice and async thunk for managing the checkout process, including session creation with backend integration
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// Async thunk to create a checkout session
+// Async thunk to create a checkout session on the server
 export const createCheckout = createAsyncThunk(
     "checkout/createCheckout",
     async (checkoutdata, { rejectWithValue }) => {
@@ -23,29 +24,30 @@ export const createCheckout = createAsyncThunk(
     }
 );
 
+// Redux slice to manage checkout-related state (session, loading, and errors)
 const checkoutSlice = createSlice({
-   name: "checkout",
-   initialState: {
-       checkout: null,
-       loading: false,
-       error: null
-   },
-   reducers: {},
-   extraReducers: (builder) => {
-       builder
-           .addCase(createCheckout.pending, (state) => {
-               state.loading = true;
-               state.error = null;
-           })
-           .addCase(createCheckout.fulfilled, (state, action) => {
-               state.loading = false;
-               state.checkout = action.payload;
-           })
-           .addCase(createCheckout.rejected, (state, action) => {
-               state.loading = false;
-               state.error = action.payload.message;
-           });
-   }
+    name: "checkout",
+    initialState: {
+        checkout: null,  // Stores checkout session details
+        loading: false,  // Indicates loading state during async call
+        error: null      // Captures error messages from API
+    },
+    reducers: {},
+    extraReducers: (builder) => {
+        builder
+            .addCase(createCheckout.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(createCheckout.fulfilled, (state, action) => {
+                state.loading = false;
+                state.checkout = action.payload; // Store checkout session data
+            })
+            .addCase(createCheckout.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload.message; // Set error if API fails
+            });
+    }
 });
 
 export default checkoutSlice.reducer;

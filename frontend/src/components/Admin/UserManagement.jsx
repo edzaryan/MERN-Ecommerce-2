@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {addUser, deleteUser, fetchUsers, updateUser} from "../../redux/slices/adminSlice.js";
+import { addUser, deleteUser, fetchUsers, updateUser } from "../../redux/slices/adminSlice";
 
 
 function UserManagement() {
@@ -61,8 +61,8 @@ function UserManagement() {
     return (
         <div className="max-w-7xl mx-auto p-6">
             <h2 className="text-2xl font-bold mb-4">User Management</h2>
-            {loading && <p>Loading...</p>}
-            {error && <p>Error: {error}</p>}
+            {loading && <div>Loading...</div>}
+            {error && <div>Error: {error}</div>}
             <div className="p-6 rounded-lg mb-6">
                 <h3 className="text-lg font-bold mb-4">Add New User</h3>
                 <form onSubmit={handleSubmit}>

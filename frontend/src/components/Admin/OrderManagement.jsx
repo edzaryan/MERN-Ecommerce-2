@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllOrders, updateOrderStatus } from "../../redux/slices/adminOrderSlice.js";
+import { fetchAllOrders, updateOrderStatus } from "../../redux/slices/adminOrderSlice";
 
 
 function OrderManagement() {
@@ -23,8 +23,9 @@ function OrderManagement() {
         dispatch(updateOrderStatus({ id: orderId, status }));
     }
 
-    if (loading) return <p>Loading...</p>
-    if (error) return <p>Error: {error}</p>
+    if (loading) return <div>Loading...</div>;
+
+    if (error) return <div>Error: {error}</div>;
 
     return (
         <div className="max-w-7xl mx-auto p-6">
@@ -70,7 +71,7 @@ function OrderManagement() {
                                     </td>
                                 </tr>
                             ))) : (
-                            <tr>
+                                <tr>
                                     <td colSpan={5} className="p-4 text-center text-gray-500">No Orders found.</td>
                                 </tr>
                         )}

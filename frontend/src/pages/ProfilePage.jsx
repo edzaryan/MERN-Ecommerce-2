@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/slices/authSlice";
 import { clearCart } from "../redux/slices/cartSlice";
-import MyOrdersPage from "./MyOrdersPage.jsx";
+import MyOrdersPage from "./MyOrdersPage";
 
 
 function Profile() {

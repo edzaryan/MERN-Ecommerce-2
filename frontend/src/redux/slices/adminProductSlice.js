@@ -1,10 +1,11 @@
+// Redux slice and async thunks for managing admin product operations: fetch, create, update, and delete
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const API_URL = `${import.meta.env.VITE_BACKEND_URL}`;
 const USER_TOKEN = `Bearer ${localStorage.getItem("userToken")}`;
 
-// Fetch admin products
+// Async thunk to fetch all products for the admin dashboard
 export const fetchAdminProducts = createAsyncThunk(
     "adminProducts/fetchProducts",
     async () => {
@@ -18,7 +19,7 @@ export const fetchAdminProducts = createAsyncThunk(
     }
 );
 
-// Create a new product
+// Async thunk to create a new product via the admin API
 export const createProduct = createAsyncThunk(
     "adminProducts/createProduct",
     async (productData) => {
@@ -36,7 +37,7 @@ export const createProduct = createAsyncThunk(
     }
 );
 
-// Update an existing product
+// Async thunk to update an existing product by ID via the admin API
 export const updateProduct = createAsyncThunk(
     "adminProducts/updateProduct",
     async ({ id, productData }) => {
@@ -54,7 +55,7 @@ export const updateProduct = createAsyncThunk(
     }
 );
 
-// Delete a product
+// Async thunk to delete a product by ID via the admin API
 export const deleteProduct = createAsyncThunk(
     "adminProducts/deleteProduct",
     async (id) => {
@@ -66,45 +67,45 @@ export const deleteProduct = createAsyncThunk(
     }
 );
 
+// Slice to manage admin product state: list of products, loading, and error states
 const adminProductSlice = createSlice({
-   name: "adminProducts",
-   initialState: {
-       products: [],
-       loading: false,
-       error: null
-   },
+    name: "adminProducts",
+    initialState: {
+        products: [],
+        loading: false,
+        error: null
+    },
     reducers: {},
     extraReducers: (builder) => {
-       builder
-           .addCase(fetchAdminProducts.pending, (state) => {
-               state.loading = true;
-           })
-           .addCase(fetchAdminProducts.fulfilled, (state, action) => {
-               state.loading = false;
-               state.products = action.payload;
-           })
-           .addCase(fetchAdminProducts.rejected, (state, action) => {
-               state.loading = false;
-               state.error = action.error.message;
-           })
-           .addCase(createProduct.fulfilled, (state, action) => {
-               state.products.push(action.payload);
-           })
-           .addCase(updateProduct.fulfilled, (state, action) => {
-               const index = state.products.findIndex(
-                   product => product._id === action.payload._id
-               );
-               if (index !== -1) {
-                   state.products[index] = action.payload;
-               }
-           })
-           .addCase(deleteProduct.fulfilled, (state, action) => {
-              state.products = state.products.filter(
-                  product => product._id !== action.payload
-              );
-           });
+        builder
+            .addCase(fetchAdminProducts.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(fetchAdminProducts.fulfilled, (state, action) => {
+                state.loading = false;
+                state.products = action.payload;
+            })
+            .addCase(fetchAdminProducts.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            })
+            .addCase(createProduct.fulfilled, (state, action) => {
+                state.products.push(action.payload);
+            })
+            .addCase(updateProduct.fulfilled, (state, action) => {
+                const index = state.products.findIndex(
+                    product => product._id === action.payload._id
+                );
+                if (index !== -1) {
+                    state.products[index] = action.payload;
+                }
+            })
+            .addCase(deleteProduct.fulfilled, (state, action) => {
+                state.products = state.products.filter(
+                    product => product._id !== action.payload
+                );
+            });
     }
 });
 
 export default adminProductSlice.reducer;
-

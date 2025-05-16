@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+
 // Fetch all users (admin only)
 export const fetchUsers = createAsyncThunk(
     "admin/fetchUsers",
@@ -15,7 +16,7 @@ export const fetchUsers = createAsyncThunk(
     return response.data;
 });
 
-// Add the create user action
+// Async thunk to create a new user via the admin API with authorization
 export const addUser = createAsyncThunk(
     "admin/addUser",
     async (userData, { rejectWithValue }) => {
@@ -37,7 +38,7 @@ export const addUser = createAsyncThunk(
     }
 );
 
-// Update user info
+// Async thunk to update an existing user's info via the admin API with authorization
 export const updateUser = createAsyncThunk(
     "admin/updateUser",
     async ({ id, name, email, role }) => {
@@ -54,7 +55,7 @@ export const updateUser = createAsyncThunk(
     return response.data.user;
 });
 
-// Delete a user
+// Async thunk to delete a user by ID via the admin API with authorization
 export const deleteUser = createAsyncThunk("admin/deleteUser", async (id) => {
     await axios.delete(
         `${import.meta.env.VITE_BACKEND_URL}/api/admin/users/${id}`,
@@ -68,6 +69,7 @@ export const deleteUser = createAsyncThunk("admin/deleteUser", async (id) => {
     return id;
 });
 
+// Redux slice to manage admin state: users list, loading state, and errors
 const adminSlice = createSlice({
     name: "admin",
     initialState: {

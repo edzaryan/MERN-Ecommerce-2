@@ -22,7 +22,7 @@ function OrderConfirmationPage() {
         const orderDate = new Date(createdAt);
         orderDate.setDate(orderDate.getDate() + 10);
         return orderDate.toLocaleDateString();
-    };
+    }
 
     return (
         <div className="max-w-4xl mx-auto p-6 bg-white">

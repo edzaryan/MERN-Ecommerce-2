@@ -1,14 +1,14 @@
-import Hero from "../components/Layout/Hero.jsx";
-import GenderCollectionSection from "../components/Products/GenderCollectionSection.jsx";
-import NewArrivals from "../components/Products/NewArrivals.jsx";
-import ProductDetailsPage from "./ProductDetailsPage.jsx";
-import ProductGrid from "../components/Products/ProductGrid.jsx";
-import FeaturedCollection from "../components/Products/FeaturedCollection.jsx";
-import FeaturesSection from "../components/Products/FeaturesSection.jsx";
-import {useDispatch, useSelector} from "react-redux";
-import {useEffect, useState} from "react";
-import {fetchProductsByFilters} from "../redux/slices/productsSlice.js";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+import Hero from "../components/Layout/Hero";
+import GenderCollectionSection from "../components/Products/GenderCollectionSection";
+import NewArrivals from "../components/Products/NewArrivals";
+import ProductDetailsPage from "./ProductDetailsPage";
+import ProductGrid from "../components/Products/ProductGrid";
+import FeaturedCollection from "../components/Products/FeaturedCollection";
+import FeaturesSection from "../components/Products/FeaturesSection";
+import { fetchProductsByFilters } from "../redux/slices/productsSlice";
 
 
 function HomePage() {
@@ -45,15 +45,17 @@ function HomePage() {
             <Hero />
             <GenderCollectionSection />
             <NewArrivals />
+
             <h2 className="text-3xl text-center font-bold mb-4">Best Seller</h2>
+
             {bestSellerProduct ? (
                 <ProductDetailsPage productId={bestSellerProduct._id} />
             ) : (
-                <p className="text-center">Loading best seller product...</p>
+                <div className="text-center">Loading best seller products...</div>
             )}
 
             <div className="container mx-auto">
-                <h2 className="text-3xl text-center font-bold mb-4">Top Wears for Women</h2>
+                <h2 className="text-3xl text-center font-bold mb-10">Top Wears for Women</h2>
                 <ProductGrid
                     products={products}
                     loading={loading}

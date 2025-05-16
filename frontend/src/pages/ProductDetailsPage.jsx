@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { toast } from "sonner";
-import ProductGrid from "../components/Products/ProductGrid.jsx";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProductDetails, fetchSimilarProducts } from "../redux/slices/productsSlice.js";
-import { addToCart } from "../redux/slices/cartSlice.js";
+import ProductGrid from "../components/Products/ProductGrid";
+import { fetchProductDetails, fetchSimilarProducts } from "../redux/slices/productsSlice";
+import { addToCart } from "../redux/slices/cartSlice";
+import { toast } from "sonner";
 
 
 function ProductDetailsPage({ productId }) {
@@ -46,6 +46,7 @@ function ProductDetailsPage({ productId }) {
             toast.error("Please select a size and color before adding to cart.", {
                 duration: 1000
             });
+
             return;
         }
 
@@ -63,19 +64,15 @@ function ProductDetailsPage({ productId }) {
         ).then(() => {
             toast.success("Product added to cart!", {
                 duration: 1000
-            })
+            });
         }).finally(() => {
             setIsButtonDisabled(false);
         });
     }
 
-    if (loading) {
-        return <p>Loading...</p>
-    }
+    if (loading) return <div>Loading...</div>;
 
-    if (error) {
-        return <p>Error: {error}</p>
-    }
+    if (error) return <div>Error: {error}</div>;
 
     return (
         <div className="m-6">

@@ -1,7 +1,7 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {useEffect} from "react";
-import {deleteProduct, fetchAdminProducts} from "../../redux/slices/adminProductSlice.js";
+import { deleteProduct, fetchAdminProducts } from "../../redux/slices/adminProductSlice";
 
 
 function ProductManagement() {
@@ -14,8 +14,9 @@ function ProductManagement() {
         dispatch(fetchAdminProducts());
     }, [dispatch]);
 
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error: {error}</p>
+    if (loading) return <div>Loading...</div>;
+
+    if (error) return <div>Error: {error}</div>;
 
     const handleDelete = (productId) => {
         if (window.confirm("Are you sure you want to delete this product?")) {

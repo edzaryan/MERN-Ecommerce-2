@@ -8,6 +8,8 @@ import adminReducer from "./slices/adminSlice";
 import adminProductReducer from "./slices/adminProductSlice";
 import adminOrdersReducer from "./slices/adminOrderSlice";
 
+
+// Configuring the Redux store using Redux Toolkit's configureStore
 const store = configureStore({
     reducer: {
         auth: authReducer,

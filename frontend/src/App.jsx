@@ -1,4 +1,4 @@
-import './App.css'
+import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import UserLayout from "./components/Layout/UserLayout.jsx";
 import HomePage from "./pages/HomePage.jsx";
@@ -19,7 +19,6 @@ import EditProductPage from "./components/Admin/EditProductPage.jsx";
 import OrderManagement from "./components/Admin/OrderManagement.jsx";
 import ProtectedRoute from "./components/Common/ProtectedRoute.jsx";
 import { Toaster } from "sonner";
-
 import { Provider } from "react-redux";
 import store from "./redux/store";
 
@@ -62,4 +61,4 @@ function App() {
     );
 }
 
-export default App
+export default App;

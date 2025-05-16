@@ -17,8 +17,9 @@ function MyOrdersPage() {
         navigate(`/order/${orderId}`);
     }
 
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error: {error}</p>;
+    if (loading) return <div>Loading...</div>;
+
+    if (error) return <div>Error: {error}</div>;
 
     return (
         <div className="max-w-7xl mx-auto p-4 sm:p-6">
@@ -82,10 +83,7 @@ function MyOrdersPage() {
                             ))
                         ) : (
                             <tr>
-                                <td
-                                    colSpan={7}
-                                    className="px-4 py-4 text-center text-gray-500"
-                                >
+                                <td colSpan={7} className="px-4 py-4 text-center text-gray-500">
                                     You have no orders
                                 </td>
                             </tr>

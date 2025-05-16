@@ -1,8 +1,8 @@
+// Redux slice and async thunks to manage user orders: includes fetching user's order list and individual order details
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-
-// Async Thunk to fetch user orders
+// Async thunk to fetch all orders placed by the currently logged-in user
 export const fetchUserOrders = createAsyncThunk(
     "orders/fetchUserOrders",
     async (_, { rejectWithValue }) => {
@@ -15,7 +15,6 @@ export const fetchUserOrders = createAsyncThunk(
                     }
                 }
             );
-
             return response.data;
         } catch (error) {
             return rejectWithValue(error.response.data);
@@ -23,7 +22,7 @@ export const fetchUserOrders = createAsyncThunk(
     }
 );
 
-// Async thunk to fetch orders details by ID
+// Async thunk to fetch details of a specific order by its ID
 export const fetchOrderDetails = createAsyncThunk(
     "orders/fetchOrderDetails",
     async (orderId, { rejectWithValue }) => {
@@ -36,26 +35,27 @@ export const fetchOrderDetails = createAsyncThunk(
                     }
                 }
             );
-
             return response.data;
         } catch (error) {
-            rejectWithValue(error.response.data);
+            return rejectWithValue(error.response.data);
         }
     }
 );
 
+// Redux slice to manage the state of orders and their details
 const orderSlice = createSlice({
     name: "orders",
     initialState: {
-        orders: [],
-        totalOrders: 0,
-        orderDetails: null,
-        loading: false,
-        error: null
+        orders: [],          // List of user's orders
+        totalOrders: 0,      // Optional: could be used for pagination later
+        orderDetails: null,  // Detailed info for a selected order
+        loading: false,      // Indicates ongoing async operations
+        error: null          // Stores any API error messages
     },
     reducers: {},
     extraReducers: (builder) => {
         builder
+            // Handle user orders fetch lifecycle
             .addCase(fetchUserOrders.pending, (state) => {
                 state.loading = true;
                 state.error = null;
@@ -68,6 +68,8 @@ const orderSlice = createSlice({
                 state.loading = false;
                 state.error = action.payload.message;
             })
+
+            // Handle single order detail fetch lifecycle
             .addCase(fetchOrderDetails.pending, (state) => {
                 state.loading = true;
                 state.error = null;

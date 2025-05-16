@@ -1,9 +1,9 @@
-import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import PayPalButton from "../components/Cart/PayPalButton.jsx";
-import { useDispatch, useSelector } from "react-redux";
-import { createCheckout } from "../redux/slices/checkoutSlice";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import PayPalButton from "../components/Cart/PayPalButton";
+import { createCheckout } from "../redux/slices/checkoutSlice";
 
 
 function CheckoutPage() {
@@ -41,6 +41,7 @@ function CheckoutPage() {
                   totalPrice: cart.totalPrice
               })
             );
+
             if (res.payload && res.payload._id) {
                 setCheckoutId(res.payload._id);
             }
@@ -83,10 +84,12 @@ function CheckoutPage() {
         }
     }
 
-    if (loading) return <p>Loading cart...</p>;
-    if (error) return <p>Error: {error}</p>;
+    if (loading) return <div>Loading cart...</div>;
+
+    if (error) return <div>Error: {error}</div>;
+
     if (!cart || !cart.products || cart.products.length === 0) {
-        return <p>Your cart is empty</p>;
+        return <div>Your cart is empty</div>;
     }
 
     return (
