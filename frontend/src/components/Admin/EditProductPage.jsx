@@ -85,129 +85,131 @@ function EditProductPage() {
     if (error) return <div>Error: {error}</div>;
 
     return (
-        <div className="max-w-5xl mx-auto p-6 shadow-md rounded-md">
-            <h2 className="text-3xl font-bold mb-6">Edit Product</h2>
-            <form onSubmit={handleSubmit}>
-                <div className="mb-6">
-                    <label className="block font-semibold mb-2">Product Name</label>
-                    <input
-                        type="text"
-                        name="name"
-                        value={productData.name}
-                        onChange={handleChange}
-                        className="w-full border boder-gray-300 rounded-md p-2"
-                        required
-                    />
-                </div>
-                <div className="mb-6">
-                    <label className="block font-semibold mb-2">Description</label>
-                    <textarea
-                        name="description"
-                        value={productData.description}
-                        onChange={handleChange}
-                        className="w-full border boder-gray-300 rounded-md p-2"
-                        rows={4}
-                        required
-                    />
-                </div>
-                <div className="mb-6">
-                    <label className="block font-semibold mb-2">Price</label>
-                    <input
-                        type="number"
-                        name="price"
-                        value={productData.price}
-                        onChange={handleChange}
-                        className="w-full border boder-gray-300 rounded-md p-2"
-                        required
-                    />
-                </div>
-                <div className="mb-6">
-                    <label className="block font-semibold mb-2">Count in Stock</label>
-                    <input
-                        type="number"
-                        name="countInStock"
-                        value={productData.countInStock}
-                        onChange={handleChange}
-                        className="w-full border boder-gray-300 rounded-md p-2"
-                        required
-                    />
-                </div>
-                <div className="mb-6">
-                    <label className="block font-semibold mb-2">SKU</label>
-                    <input
-                        type="text"
-                        name="sku"
-                        value={productData.sku}
-                        onChange={handleChange}
-                        className="w-full border boder-gray-300 rounded-md p-2"
-                        required
-                    />
-                </div>
-                <div className="mb-6">
-                    <label className="block font-semibold mb-2">Sizes (comma-separated)</label>
-                    <input
-                        type="text"
-                        name="sizes"
-                        value={productData.sizes.join(", ")}
-                        onChange={(e) =>
-                            setProductData({
-                                ...productData,
-                                sizes: e.target.value.split(",").map(size => size.trim())
-                            })
-                        }
-                        className="w-full border boder-gray-300 rounded-md p-2"
-                        required
-                    />
-                </div>
-                <div className="mb-6">
-                    <label className="block font-semibold mb-2">Colors</label>
-                    <input
-                        type="text"
-                        name="colors"
-                        value={productData.colors.join(", ")}
-                        onChange={(e) =>
-                            setProductData({
-                                ...productData,
-                                colors: e.target.value.split(",").map(color => color.trim())
-                            })
-                        }
-                        className="w-full border boder-gray-300 rounded-md p-2"
-                        required
-                    />
-                </div>
-                <div className="mb-6">
-                    <label className="block font-semibold mb-2">Upload Image</label>
-                    <input
-                        type="file"
-                        onChange={handleImageUpload}
-                        className="block w-full text-sm text-gray-500
+        <>
+            <div className="max-w-5xl mx-auto p-6 shadow-md rounded-md">
+                <h2 className="text-3xl font-bold mb-6">Edit Product</h2>
+                <form onSubmit={handleSubmit}>
+                    <div className="mb-6">
+                        <label className="block font-semibold mb-2">Product Name</label>
+                        <input
+                            type="text"
+                            name="name"
+                            value={productData.name}
+                            onChange={handleChange}
+                            className="w-full border boder-gray-300 rounded-md p-2"
+                            required
+                        />
+                    </div>
+                    <div className="mb-6">
+                        <label className="block font-semibold mb-2">Description</label>
+                        <textarea
+                            name="description"
+                            value={productData.description}
+                            onChange={handleChange}
+                            className="w-full border boder-gray-300 rounded-md p-2"
+                            rows={4}
+                            required
+                        />
+                    </div>
+                    <div className="mb-6">
+                        <label className="block font-semibold mb-2">Price</label>
+                        <input
+                            type="number"
+                            name="price"
+                            value={productData.price}
+                            onChange={handleChange}
+                            className="w-full border boder-gray-300 rounded-md p-2"
+                            required
+                        />
+                    </div>
+                    <div className="mb-6">
+                        <label className="block font-semibold mb-2">Count in Stock</label>
+                        <input
+                            type="number"
+                            name="countInStock"
+                            value={productData.countInStock}
+                            onChange={handleChange}
+                            className="w-full border boder-gray-300 rounded-md p-2"
+                            required
+                        />
+                    </div>
+                    <div className="mb-6">
+                        <label className="block font-semibold mb-2">SKU</label>
+                        <input
+                            type="text"
+                            name="sku"
+                            value={productData.sku}
+                            onChange={handleChange}
+                            className="w-full border boder-gray-300 rounded-md p-2"
+                            required
+                        />
+                    </div>
+                    <div className="mb-6">
+                        <label className="block font-semibold mb-2">Sizes (comma-separated)</label>
+                        <input
+                            type="text"
+                            name="sizes"
+                            value={productData.sizes.join(", ")}
+                            onChange={(e) =>
+                                setProductData({
+                                    ...productData,
+                                    sizes: e.target.value.split(",").map(size => size.trim())
+                                })
+                            }
+                            className="w-full border boder-gray-300 rounded-md p-2"
+                            required
+                        />
+                    </div>
+                    <div className="mb-6">
+                        <label className="block font-semibold mb-2">Colors</label>
+                        <input
+                            type="text"
+                            name="colors"
+                            value={productData.colors.join(", ")}
+                            onChange={(e) =>
+                                setProductData({
+                                    ...productData,
+                                    colors: e.target.value.split(",").map(color => color.trim())
+                                })
+                            }
+                            className="w-full border boder-gray-300 rounded-md p-2"
+                            required
+                        />
+                    </div>
+                    <div className="mb-6">
+                        <label className="block font-semibold mb-2">Upload Image</label>
+                        <input
+                            type="file"
+                            onChange={handleImageUpload}
+                            className="block w-full text-sm text-gray-500
                            file:mr-4 file:py-2 file:px-4
                            file:rounded file:border-0
                            file:text-sm file:font-semibold
                            file:bg-blue-600 file:text-white
                            hover:file:bg-blue-700"
-                    />
-                    {uploading && <p>Uploading image...</p>}
-                    <div className="flex gap-4 mt-4">
-                        {productData.images.map((image, index) => (
-                            <div key={index}>
-                                <img
-                                    src={image.url}
-                                    className="w-20 h-20 object-cover rounded-md shadow-md"
-                                    alt={image.altText || "Product Image"}
-                                />
-                            </div>
-                        ))}
+                        />
+                        {uploading && <p>Uploading image...</p>}
+                        <div className="flex gap-4 mt-4">
+                            {productData.images.map((image, index) => (
+                                <div key={index}>
+                                    <img
+                                        src={image.url}
+                                        className="w-20 h-20 object-cover rounded-md shadow-md"
+                                        alt={image.altText || "Product Image"}
+                                    />
+                                </div>
+                            ))}
+                        </div>
                     </div>
-                </div>
-                <button
-                    type="submit"
-                    className="w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600 transition-colors"
-                >
-                    Update Product
-                </button>
-            </form>
-        </div>
+                    <button
+                        type="submit"
+                        className="w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600 transition-colors"
+                    >
+                        Update Product
+                    </button>
+                </form>
+            </div>
+        </>
     )
 }
 

@@ -41,31 +41,33 @@ function HomePage() {
     }, [dispatch]);
 
     return (
-        <div>
-            <Hero />
-            <GenderCollectionSection />
-            <NewArrivals />
+        <>
+            <div>
+                <Hero/>
+                <GenderCollectionSection/>
+                <NewArrivals/>
 
-            <h2 className="text-3xl text-center font-bold mb-4">Best Seller</h2>
-            <div className="mb-20">
-                {bestSellerProduct ? (
-                    <ProductDetailsPage productId={bestSellerProduct._id} />
-                ) : (
-                    <div className="text-center">Loading best seller products...</div>
-                )}
-            </div>
+                <h2 className="text-3xl text-center font-bold mb-4">Best Seller</h2>
+                <div className="mb-20">
+                    {bestSellerProduct ? (
+                        <ProductDetailsPage productId={bestSellerProduct._id}/>
+                    ) : (
+                        <div className="text-center">Loading best seller products...</div>
+                    )}
+                </div>
 
-            <div className="container mx-auto mb-20">
-                <h2 className="text-3xl text-center font-bold mb-10">Top Wears for Women</h2>
-                <ProductGrid
-                    products={products}
-                    loading={loading}
-                    error={error}
-                />
+                <div className="container mx-auto mb-20">
+                    <h2 className="text-3xl text-center font-bold mb-10">Top Wears for Women</h2>
+                    <ProductGrid
+                        products={products}
+                        loading={loading}
+                        error={error}
+                    />
+                </div>
+                <FeaturedCollection/>
+                <FeaturesSection/>
             </div>
-            <FeaturedCollection />
-            <FeaturesSection />
-        </div>
+        </>
     )
 }
 

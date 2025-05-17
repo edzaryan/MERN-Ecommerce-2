@@ -1,11 +1,11 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import SearchBar from "./SearchBar";
+import CartDrawer from "../Layout/CartDrawer";
+import { IoMdClose } from "react-icons/io";
 import { HiOutlineUser, HiOutlineShoppingBag } from "react-icons/hi";
 import { HiBars3BottomRight } from "react-icons/hi2";
-import SearchBar from "./SearchBar.jsx";
-import CartDrawer from "../Layout/CartDrawer.jsx";
-import { useState } from "react";
-import { IoMdClose } from "react-icons/io";
-import {useSelector} from "react-redux";
 
 
 function Navbar() {
@@ -29,7 +29,7 @@ function Navbar() {
         <>
             <nav className="container mx-auto flex items-center justify-between py-4 px-6">
                 <div>
-                    <Link to="/" className="text-2xl font-medium">Rabbit</Link>
+                    <Link to="/" className="text-2xl font-normal">Clothé Luxe</Link>
                 </div>
                 <div className="hidden md:flex space-x-6">
                     <Link

@@ -1,12 +1,15 @@
-import Topbar from "../Layout/Topbar.jsx";
-import Navbar from "./Navbar.jsx";
+import Topbar from "../Layout/Topbar";
+import Navbar from "./Navbar";
+
 
 function Header() {
     return (
-        <header className="border-b border-gray-200">
-            <Topbar />
-            <Navbar />
-        </header>
+        <>
+            <header className="border-b border-gray-200">
+                <Topbar/>
+                <Navbar/>
+            </header>
+        </>
     )
 }
 

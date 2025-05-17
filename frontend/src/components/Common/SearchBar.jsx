@@ -1,8 +1,9 @@
 import { useState } from "react";
-import {HiMagnifyingGlass, HiMiniXMark} from "react-icons/hi2";
-import {useDispatch} from "react-redux";
-import {useNavigate} from "react-router-dom";
-import {fetchProductsByFilters, setFilters} from "../../redux/slices/productsSlice.js";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { fetchProductsByFilters, setFilters } from "../../redux/slices/productsSlice";
+import { HiMagnifyingGlass, HiMiniXMark } from "react-icons/hi2";
+
 
 function SearchBar() {
     const [searchTerm, setSearchTerm] = useState("");

@@ -25,39 +25,41 @@ import store from "./redux/store";
 
 function App() {
     return (
-        <Provider store={store}>
-            <BrowserRouter>
-                <Toaster position="top-right" />
-                <Routes>
-                    <Route path="/" element={<UserLayout />}>
-                        <Route index element={<HomePage />} />
-                        <Route path="login" element={<LoginPage />} />
-                        <Route path="register" element={<RegisterPage />} />
-                        <Route path="profile" element={<Profile />} />
-                        <Route path="collections/:collection" element={<CollectionPage />} />
-                        <Route path="products/:id" element={<ProductDetailsPage />} />
-                        <Route path="checkout" element={<CheckoutPage />} />
-                        <Route path="order-confirmation" element={<OrderConfirmationPage />} />
-                        <Route path="order/:id" element={<OrderDetailsPage />} />
-                        <Route path="my-orders" element={<MyOrdersPage />} />
-                    </Route>
-                    <Route
-                        path="/admin"
-                        element={
-                            <ProtectedRoute role="admin">
-                                <AdminLayout />
-                            </ProtectedRoute>
-                        }
-                    >
-                        <Route index element={<AdminHomePage />} />
-                        <Route path="users" element={<UserManagement />} />
-                        <Route path="products" element={<ProductManagement />} />
-                        <Route path="products/:id/edit" element={<EditProductPage />} />
-                        <Route path="orders" element={<OrderManagement />} />
-                    </Route>
-                </Routes>
-            </BrowserRouter>
-        </Provider>
+        <>
+            <Provider store={store}>
+                <BrowserRouter>
+                    <Toaster position="top-right" />
+                    <Routes>
+                        <Route path="/" element={<UserLayout />}>
+                            <Route index element={<HomePage />} />
+                            <Route path="login" element={<LoginPage />} />
+                            <Route path="register" element={<RegisterPage />} />
+                            <Route path="profile" element={<Profile />} />
+                            <Route path="collections/:collection" element={<CollectionPage />} />
+                            <Route path="products/:id" element={<ProductDetailsPage />} />
+                            <Route path="checkout" element={<CheckoutPage />} />
+                            <Route path="order-confirmation" element={<OrderConfirmationPage />} />
+                            <Route path="order/:id" element={<OrderDetailsPage />} />
+                            <Route path="my-orders" element={<MyOrdersPage />} />
+                        </Route>
+                        <Route
+                            path="/admin"
+                            element={
+                                <ProtectedRoute role="admin">
+                                    <AdminLayout />
+                                </ProtectedRoute>
+                            }
+                        >
+                            <Route index element={<AdminHomePage />} />
+                            <Route path="users" element={<UserManagement />} />
+                            <Route path="products" element={<ProductManagement />} />
+                            <Route path="products/:id/edit" element={<EditProductPage />} />
+                            <Route path="orders" element={<OrderManagement />} />
+                        </Route>
+                    </Routes>
+                </BrowserRouter>
+            </Provider>
+        </>
     );
 }
 

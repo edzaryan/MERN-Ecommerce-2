@@ -40,29 +40,31 @@ function CollectionPage() {
     }, []);
 
     return (
-        <div className="flex flex-col lg:flex-row">
-            <button
-                onClick={toggleSidebar}
-                className="lg:hidden border p-2 flex justify-center items-center">
-                <FaFilter className="mr-2" /> Filters
-            </button>
-            <div
-                ref={sidebarRef}
-                className={`fixed inset-y-0 z-50 left-0 w-64 bg-white overflow-y-auto transition-transform duration-300 
+        <>
+            <div className="flex flex-col lg:flex-row">
+                <button
+                    onClick={toggleSidebar}
+                    className="lg:hidden border p-2 flex justify-center items-center">
+                    <FaFilter className="mr-2"/> Filters
+                </button>
+                <div
+                    ref={sidebarRef}
+                    className={`fixed inset-y-0 z-50 left-0 w-64 bg-white overflow-y-auto transition-transform duration-300 
                 lg:static lg:translate-x-0 ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}`}
-            >
-                <FilterSidebar />
+                >
+                    <FilterSidebar/>
+                </div>
+                <div className="flex-grow p-4">
+                    <h2 className="text-2xl uppercase mb-4">All Collection</h2>
+                    <SortOptions/>
+                    <ProductGrid
+                        products={products}
+                        loading={loading}
+                        error={error}
+                    />
+                </div>
             </div>
-            <div className="flex-grow p-4">
-                <h2 className="text-2xl uppercase mb-4">All Collection</h2>
-                <SortOptions />
-                <ProductGrid
-                    products={products}
-                    loading={loading}
-                    error={error}
-                />
-            </div>
-        </div>
+        </>
     )
 }
 
