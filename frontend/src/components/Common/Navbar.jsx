@@ -72,8 +72,11 @@ function Navbar() {
                         className="relative hover:text-black">
                         <HiOutlineShoppingBag className="h-6 w-6 text-gray-700" />
                         {
-                            cartItemCount > 0 && (<span
-                                className="absolute -top-1 bg-red-700 text-white text-xs rounded-full px-2 py-0.5">{cartItemCount}</span>)
+                            cartItemCount > 0 && (
+                                <span
+                                    className="absolute -top-1 bg-red-700 text-white text-xs rounded-full px-2 py-0.5">
+                                    {cartItemCount}
+                                </span>)
                         }
                     </button>
                     <div className="overflow-hidden">
@@ -106,13 +109,22 @@ function Navbar() {
                         >
                             Men
                         </Link>
-                        <Link to="/collections/all?gender=Women" onClick={toggleNavDrawer} className="block text-gray-600 hover:text-black">
+                        <Link
+                            to="/collections/all?gender=Women"
+                            onClick={toggleNavDrawer}
+                            className="block text-gray-600 hover:text-black">
                             Women
                         </Link>
-                        <Link to="/collections/all?category=Top Wear" onClick={toggleNavDrawer} className="block text-gray-600 hover:text-black">
+                        <Link
+                            to="/collections/all?category=Top Wear"
+                            onClick={toggleNavDrawer}
+                            className="block text-gray-600 hover:text-black">
                             Top Wear
                         </Link>
-                        <Link to="/collections/all?category=Bottom Wear" onClick={toggleNavDrawer} className="block text-gray-600 hover:text-black">
+                        <Link
+                            to="/collections/all?category=Bottom Wear"
+                            onClick={toggleNavDrawer}
+                            className="block text-gray-600 hover:text-black">
                             Bottom Wear
                         </Link>
                     </nav>
