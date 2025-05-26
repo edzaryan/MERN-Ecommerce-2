@@ -1,7 +1,8 @@
-const express = require('express');
+const express = require("express");
 const Cart = require("../models/cart");
 const Product = require("../models/product");
 const { protect, admin} = require("../middleware/authMiddleware");
+
 
 const router = express.Router();
 
@@ -252,5 +253,6 @@ router.post("/merge", protect, async (req, res) => {
         res.status(500).json({ message: "Server Error" });
     }
 });
+
 
 module.exports = router;

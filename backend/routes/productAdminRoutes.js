@@ -2,6 +2,7 @@ const express = require("express");
 const Product = require("../models/product");
 const { protect, admin } = require("../middleware/authMiddleware");
 
+
 const router = express.Router();
 
 /**
@@ -17,5 +18,6 @@ router.get("/", protect, admin, async (req, res) => {
         res.status(500).json({ message: "Server Error" });
     }
 });
+
 
 module.exports = router;

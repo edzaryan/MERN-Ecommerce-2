@@ -2,6 +2,7 @@ const express = require("express");
 const User = require("../models/user");
 const { protect, admin } = require("../middleware/authMiddleware");
 
+
 const router = express.Router();
 
 /**
@@ -85,5 +86,6 @@ router.delete("/:id", protect, admin, async (req, res) => {
         res.status(500).json({ message: "Server Error" });
     }
 });
+
 
 module.exports = router;

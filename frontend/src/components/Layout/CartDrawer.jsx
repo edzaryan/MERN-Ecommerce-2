@@ -36,7 +36,7 @@ function CartDrawer({ drawerOpen, toggleCardDrawer }) {
                     ) : (
                         <p>Your cart is empty.</p>
                     )}
-                    <CartContents/>
+                    <CartContents />
                 </div>
                 <div className="p-4 bg-white sticky bottom-0">
                     {cart && cart?.products?.length > 0 && (

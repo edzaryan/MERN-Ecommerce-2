@@ -80,8 +80,7 @@ function AdminHomePage() {
                                     </tr>
                                 ))) : (
                                 <tr>
-                                    <td colSpan={4} className="p-4 text-center text-gray-500">No recent orders found.
-                                    </td>
+                                    <td colSpan={4} className="p-4 text-center text-gray-500">No recent orders found.</td>
                                 </tr>
                             )
                             }

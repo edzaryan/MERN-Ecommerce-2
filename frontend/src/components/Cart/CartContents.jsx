@@ -1,6 +1,6 @@
-import { RiDeleteBin3Line } from "react-icons/ri";
 import { useDispatch } from "react-redux";
 import { removeFromCart, updateCartItemQuantity } from "../../redux/slices/cartSlice";
+import { RiDeleteBin3Line } from "react-icons/ri";
 
 
 function CartContents({ cart, userId, guestId }) {
@@ -90,7 +90,7 @@ function CartContents({ cart, userId, guestId }) {
                         </div>
                     </div>
                 ))}
-            </div>s
+            </div>
         </>
     )
 }

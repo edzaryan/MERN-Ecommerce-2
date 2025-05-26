@@ -2,6 +2,7 @@ const express = require("express");
 const Product = require("../models/product");
 const { protect, admin } = require("../middleware/authMiddleware");
 
+
 const router = express.Router();
 
 /**

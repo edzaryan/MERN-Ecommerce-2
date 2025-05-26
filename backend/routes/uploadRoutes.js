@@ -4,6 +4,7 @@ const cloudinary = require("cloudinary").v2;
 const streamifier = require("streamifier");
 const stream = require("node:stream");
 
+
 const router = express.Router();
 
 require("dotenv").config();
@@ -50,5 +51,6 @@ router.post("/", upload.single("image"), async (req, res) => {
         res.status(500).json({ message: "Server Error" });
     }
 });
+
 
 module.exports = router;

@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 const { protect } = require("../middleware/authMiddleware");
 
+
 const router = express.Router();
 
 /**
@@ -29,7 +30,7 @@ router.post("/register", async (req, res) => {
         let user = new User({
             name: name.trim(),
             email: email.trim().toLowerCase(),
-            password: password.trim() // Assume password is hashed in model using pre-save middleware
+            password: password.trim()
         });
 
         // Save user to DB
@@ -62,7 +63,6 @@ router.post("/register", async (req, res) => {
             token
         });
     } catch (err) {
-        console.log(err);
         res.status(500).send("Server Error");
     }
 });
@@ -75,8 +75,6 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
     try {
         let { email, password } = req.body;
-
-        console.log(email, password);
 
         // Check if both email and password are provided
         if (!email || !password) {
@@ -128,7 +126,6 @@ router.post("/login", async (req, res) => {
             token
         });
     } catch (error) {
-        console.error("Login error:", error.message);
         res.status(500).json({ message: "Server error. Please try again later." });
     }
 });
@@ -142,5 +139,6 @@ router.get("/profile", protect, async (req, res) => {
     // The `protect` middleware attaches the user to req.user if token is valid
     res.json(req.user);
 });
+
 
 module.exports = router;

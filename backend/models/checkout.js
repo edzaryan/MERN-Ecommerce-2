@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+
 const checkoutItemSchema = new mongoose.Schema(
     {
         productId: {
@@ -75,5 +76,6 @@ const checkoutSchema = new mongoose.Schema(
     },
     { timestamps: true }
 );
+
 
 module.exports = mongoose.models.Checkout || mongoose.model("Checkout", checkoutSchema);

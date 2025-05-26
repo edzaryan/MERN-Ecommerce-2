@@ -43,19 +43,17 @@ function HomePage() {
     return (
         <>
             <div>
-                <Hero/>
-                <GenderCollectionSection/>
-                <NewArrivals/>
-
+                <Hero />
+                <GenderCollectionSection />
+                <NewArrivals />
                 <h2 className="text-3xl text-center font-bold mb-4">Best Seller</h2>
                 <div className="mb-20">
                     {bestSellerProduct ? (
-                        <ProductDetailsPage productId={bestSellerProduct._id}/>
+                        <ProductDetailsPage productId={bestSellerProduct._id} />
                     ) : (
                         <div className="text-center">Loading best seller products...</div>
                     )}
                 </div>
-
                 <div className="container mx-auto mb-20">
                     <h2 className="text-3xl text-center font-bold mb-10">Top Wears for Women</h2>
                     <ProductGrid
@@ -64,8 +62,8 @@ function HomePage() {
                         error={error}
                     />
                 </div>
-                <FeaturedCollection/>
-                <FeaturesSection/>
+                <FeaturedCollection />
+                <FeaturesSection />
             </div>
         </>
     )

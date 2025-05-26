@@ -1,26 +1,26 @@
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import UserLayout from "./components/Layout/UserLayout.jsx";
-import HomePage from "./pages/HomePage.jsx";
-import LoginPage from "./pages/LoginPage.jsx";
-import RegisterPage from "./pages/RegisterPage.jsx";
-import Profile from "./pages/ProfilePage.jsx";
-import CollectionPage from "./pages/CollectionPage.jsx";
-import ProductDetailsPage from "./pages/ProductDetailsPage.jsx";
-import CheckoutPage from "./pages/CheckoutPage.jsx";
-import OrderConfirmationPage from "./pages/OrderConfirmationPage.jsx";
-import OrderDetailsPage from "./pages/OrderDetailsPage.jsx";
-import MyOrdersPage from "./pages/MyOrdersPage.jsx";
-import AdminLayout from "./components/Admin/AdminLayout.jsx";
-import AdminHomePage from "./pages/AdminHomePage.jsx";
-import UserManagement from "./components/Admin/UserManagement.jsx";
-import ProductManagement from "./components/Admin/ProductManagement.jsx";
-import EditProductPage from "./components/Admin/EditProductPage.jsx";
-import OrderManagement from "./components/Admin/OrderManagement.jsx";
-import ProtectedRoute from "./components/Common/ProtectedRoute.jsx";
-import { Toaster } from "sonner";
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import UserLayout from "./components/Layout/UserLayout";
+import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import Profile from "./pages/ProfilePage";
+import CollectionPage from "./pages/CollectionPage";
+import ProductDetailsPage from "./pages/ProductDetailsPage";
+import CheckoutPage from "./pages/CheckoutPage";
+import OrderConfirmationPage from "./pages/OrderConfirmationPage";
+import OrderDetailsPage from "./pages/OrderDetailsPage";
+import MyOrdersPage from "./pages/MyOrdersPage";
+import AdminLayout from "./components/Admin/AdminLayout";
+import AdminHomePage from "./pages/AdminHomePage";
+import UserManagement from "./components/Admin/UserManagement";
+import ProductManagement from "./components/Admin/ProductManagement";
+import EditProductPage from "./components/Admin/EditProductPage";
+import OrderManagement from "./components/Admin/OrderManagement";
+import ProtectedRoute from "./components/Common/ProtectedRoute";
+import { Toaster } from "sonner";
 
 
 function App() {

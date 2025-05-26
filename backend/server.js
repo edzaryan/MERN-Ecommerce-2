@@ -24,7 +24,7 @@ const PORT = process.env.PORT || 3000;
 
 connectDB();
 
-// API Routes
+// User Routes
 app.use("/api/users", userRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes);
@@ -33,10 +33,11 @@ app.use("/api/orders", orderRoutes);
 app.use("/api/upload", uploadRoutes);
 app.use("/api", subscribeRoute);
 
-// Admin
+// Admin Routes
 app.use("/api/admin/users", adminRoute);
 app.use("/api/admin/products", productAdminRoute);
 app.use("/api/admin/orders", adminOrderRoutes);
+
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);

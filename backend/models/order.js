@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
 
+
 const orderItemSchema = new mongoose.Schema({
     productId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Product',
+        ref: "Product",
         required: true
     },
     name: {
@@ -73,6 +74,7 @@ const orderSchema = new mongoose.Schema({
 }, {
     timestamps: true
 });
+
 
 module.exports = mongoose.models.Order || mongoose.model("Order", orderSchema);
 
